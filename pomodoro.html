@@ -37,12 +37,6 @@
                         <path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6" />
                         <path d="M9 17H4v5" />
                     </svg></button>
-                <button class="button" onclick=""><svg xmlns="http://www.w3.org/2000/svg" width="3.5vh" height="3.5vh"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-star">
-                        <polygon
-                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                    </svg></button>
             </div>
         </div>
         <div class="body" id="body">
@@ -53,9 +47,9 @@
                     <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
                 </svg>
             </div>
-            <div class="tomato" id="timer">
-                <span style="font-size: 2vh; font-weight: bold;">0/4</span>
-                <span>25:00</span>
+            <div class="tomato" id="tomato">
+                <span style="font-size: 2vh; font-weight: bold;" id="turni">0/4</span>
+                <span id="timer">25:00</span>
             </div>
         </div>
         <div class="start" id="start">
@@ -68,7 +62,7 @@
                     <rect x="14" y="4" width="4" height="16" rx="1" />
                     <rect x="6" y="4" width="4" height="16" rx="1" />
                 </svg></button>
-            <button onclick="stop();" style="margin-left: 3vh;"><svg xmlns="http://www.w3.org/2000/svg" width="5vh"
+            <button onclick="stop();" style="margin-left: 3vh;" id="stop"><svg xmlns="http://www.w3.org/2000/svg" width="5vh"
                     height="5vh" viewBox="0 0 24 24" fill=white class="lucide lucide-square">
                     <rect width="18" height="18" x="3" y="3" rx="2" />
                 </svg></button>
@@ -79,7 +73,7 @@
                 <label>Tempo di studio: </label> <input type="number" id="studio">
             </div>
             <div class="input">
-                <label>Tempo di pausa: </label> <input type="number" id="pausa">
+                <label>Tempo di pausa: </label> <input type="number" id="tempopausa">
             </div>
             <div class="input">
                 <label>Tempo di pausa lungo: </label> <input type="number" id="pausalunga">
