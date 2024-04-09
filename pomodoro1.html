@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="./script.js"></script>
+    <title>TOMATO</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="left-navbar">
+                <button class="button" onclick="home();"><svg xmlns="http://www.w3.org/2000/svg" width="3.5vh"
+                        height="3.5vh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75"
+                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg></button>
+            </div>
+            <div class="right-navbar">
+                <button class="button" onclick="aperturaMenuTimer();"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="3.5vh" height="3.5vh" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-settings">
+                        <path
+                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg></button>
+                <button class="button" onclick=""><svg xmlns="http://www.w3.org/2000/svg" width="3.5vh" height="3.5vh"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-timer-reset">
+                        <path d="M10 2h4" />
+                        <path d="M12 14v-4" />
+                        <path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6" />
+                        <path d="M9 17H4v5" />
+                    </svg></button>
+                <button class="button" onclick=""><svg xmlns="http://www.w3.org/2000/svg" width="3.5vh" height="3.5vh"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-star">
+                        <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg></button>
+            </div>
+        </div>
+        <div class="body" id="body">
+            <div class="foglia">
+                <svg xmlns="http://www.w3.org/2000/svg" width="5vh" height="5vh" viewBox="0 0 24 24" fill=#54d16f
+                    class="lucide lucide-leaf">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                </svg>
+            </div>
+            <div class="tomato" id="timer">
+                25:00
+            </div>
+        </div>
+        <div class="start" id="start">
+            <button onclick="start();" id="inizio"><svg xmlns="http://www.w3.org/2000/svg" width="5vh" height="5vh"
+                    viewBox="0 0 24 24" fill=white class="lucide lucide-play">
+                    <polygon points="6 3 20 12 6 21 6 3" />
+                </svg></button>
+            <button style="display: none;" onclick="pause();" id="pausa"><svg xmlns="http://www.w3.org/2000/svg" width="5vh" height="5vh"
+                    viewBox="0 0 24 24" fill= white class="lucide lucide-pause">
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                </svg></button>
+            <button onclick="stop();" style="margin-left: 3vh;"><svg xmlns="http://www.w3.org/2000/svg" width="5vh"
+                    height="5vh" viewBox="0 0 24 24" fill=white class="lucide lucide-square">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                </svg></button>
+        </div>
+
+        <div class="impostazioni" id="impostazioni">
+            <div class="input">
+                <label>Tempo di studio: </label> <input type="number" id="studio">
+            </div>
+            <div class="input">
+                <label>Tempo di pausa: </label> <input type="number" id="pausa">
+            </div>
+            <div class="input">
+                <label>Tempo di pausa lungo: </label> <input type="number" id="pausalunga">
+            </div>
+            <div class="input">
+                <label>Pausa lunga dopo quanti round: </label> <input type="number" id="round">
+            </div>
+        </div>
+
+        <div class="conferma" id="conferma">
+            <button onclick="submit();" id="submit"><svg xmlns="http://www.w3.org/2000/svg" width="4vh" height="4vh"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-check">
+                    <path d="M20 6 9 17l-5-5" />
+                </svg></button>
+        </div>
+
+    </div>
+</body>
+
+</html>

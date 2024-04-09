@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'Numeri';
+    src: url('./Font/KongScript-Light.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'Testo';
+    src: url('./Font/Fontspring-DEMO-churchward_typestyle_book.otf') format('truetype'); 
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 3vh;
+    width: 50vh;
+    height: 70vh;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+
+.navbar{
+    margin-top: 4vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-bottom: 7vh;
+    height: 46px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(232,226,247);
+    border-radius: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-navbar{
+    width: 50%;
+    align-items: left;
+    text-align: left;
+}
+
+.right-navbar{
+    width: 50%;
+    align-items: right;
+    text-align: right;
+}
+
+button{
+    background: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: rgb(172,147,243);
+    border-radius: 10px;
+}
+
+.body{
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.foglia{
+    height: 10%;
+    margin-left: 1vh;
+}
+
+.tomato{
+    height: 30vh;
+    width: 30vh;
+    border-radius: 100%;
+    border: 2vh solid tomato;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Numeri';
+    font-size: 8vh;
+    color: rgb(93, 92, 92);
+    margin-bottom: 5vh;
+}
+
+.start{
+    display: flex;
+    margin-bottom: 3vh;
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.start button{
+    height: 7vh;
+    width: 7vh;
+    background-color: #dccfff;
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.start button:hover{
+    cursor: pointer;
+    background-color: rgb(172,147,243);
+}
+
+.impostazioni{
+    display: none;
+    flex-direction: column;
+    font-family: Testo;
+    font-weight: lighter;
+    background-color: rgb(232,226,247);
+    margin-left: 2vh;
+    margin-right: 2vh;
+    border-radius: 1vh;
+}
+
+.input{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    margin-bottom: 1vh;
+    margin-top: 1vh;
+    color: gray;
+}
+
+.input input{
+    background-color: none;
+    border: 1px solid #c6b2fc;
+    width: 10vh;
+    border-radius: 1vh;
+    outline: none;
+}
+
+.conferma{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.conferma button{
+    font-family: Testo;
+    font-size: 3vh;
+    margin-top: 5vh;
+    background-color: #dccfff;
+    color: white;
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.conferma button:hover{
+    cursor: pointer;
+    background-color: rgb(172,147,243);
+}
