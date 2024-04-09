@@ -23,19 +23,22 @@ function home() {
     conferma.style.display = 'none';
 }
 
-function submit() {
-    home();
-
-    var minuti = document.getElementById('studio').value;
-    var secondi = 0;
-
-    document.getElementById('timer').textContent = formatTime(minuti, secondi);
-}
-
 var seconds = 0;
 var minutes;
 var pausa = false;
-var timerInterval
+var timerInterval;
+var deciso = false;
+
+function submit() {
+    home();
+
+    minutes = document.getElementById('studio').value;
+    seconds = 0;
+
+    document.getElementById('timer').textContent = formatTime(minutes, seconds);
+
+    deciso = true;
+}
 
 function start() {
 
@@ -46,10 +49,8 @@ function start() {
     div2.style.display = 'flex';
 
     if (pausa == false) {
-        if (isNaN(parseInt(document.getElementById('studio').value))) {
+        if (deciso == false) {
             minutes = 25;
-        } else {
-            minutes = parseInt(document.getElementById('studio').value);
         }
     }
     pausa = false;
@@ -74,7 +75,7 @@ function start() {
                 seconds = 59;
             } else {
                 clearInterval(timerInterval);
-                    if (isNaN(parseInt(document.getElementById('studio').value))) {
+                    if (deciso==false) {
                         minutes = 25;
                         seconds = 0;
                         document.getElementById('timer').textContent = formatTime(minutes, seconds);
@@ -101,6 +102,7 @@ function pause() {
     div.style.display = 'flex';
     div2.style.display = 'none';
     pausa = true;
+    clearInterval(timerInterval);
     document.getElementById('timer').textContent = formatTime(minutes, seconds);
 }
 
@@ -109,12 +111,14 @@ function stop() {
     var div2 = document.getElementById('pausa');
     pausa = true;
     clearInterval(timerInterval);
-    if (isNaN(parseInt(document.getElementById('studio').value))) {
+    if (deciso==false) {
         minutes = 25;
         seconds = 0;
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
     } else {
         document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
+        minutes = document.getElementById('studio').value;
+        seconds=0;
     }
     div.style.display = 'flex';
     div2.style.display = 'none';
