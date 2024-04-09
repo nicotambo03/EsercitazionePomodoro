@@ -70,16 +70,19 @@
 
         <div class="impostazioni" id="impostazioni">
             <div class="input">
-                <label>Tempo di studio: </label> <input type="number" id="studio">
+                <label>Tempo di studio: </label> <input type="number" min="1" id="studio">
             </div>
             <div class="input">
-                <label>Tempo di pausa: </label> <input type="number" id="tempopausa">
+                <label>Tempo di pausa: </label> <input type="number" min="1" id="tempopausa">
             </div>
             <div class="input">
-                <label>Tempo di pausa lungo: </label> <input type="number" id="pausalunga">
+                <label>Tempo di pausa lungo: </label> <input type="number" min="1" id="pausalunga">
             </div>
             <div class="input">
-                <label>Pausa lunga dopo quanti round: </label> <input type="number" id="round">
+                <label>Pausa lunga al round numero: </label> <input type="number" min="1" id="round">
+            </div>
+            <div class="input">
+                <label>Numero di round: </label> <input type="number" min="1" id="numeroround">
             </div>
         </div>
 

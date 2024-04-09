@@ -37,19 +37,30 @@ function submit() {
     seconds = 0;
 
     document.getElementById('timer').textContent = formatTime(minutes, seconds);
+    document.getElementById('turni').textContent = '0/' + document.getElementById('numeroround').value;
 
     deciso = true;
 }
 
 function start() {
+
     var div = document.getElementById('inizio');
     var div2 = document.getElementById('pausa');
 
-    document.getElementById('turni').textContent = turni + '/4';
     document.getElementById('tomato').style.borderColor = 'tomato';
 
     div.style.display = 'none';
     div2.style.display = 'flex';
+
+    if(turni==document.getElementById('numeroround').value){
+        div.style.display = 'flex';
+        div2.style.display = 'none';
+        document.getElementById('turni').textContent = '0/'+document.getElementById('numeroround').value;
+        turni=1;
+        return;
+    }
+
+    document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
 
     if (pausa == false) {
         if (deciso == false) {
@@ -57,10 +68,6 @@ function start() {
         }
     }
     pausa = false;
-
-    if (isNaN(minutes) || minutes <= 0) {
-        return;
-    }
 
     timerInterval = setInterval(function () {
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
@@ -78,11 +85,17 @@ function start() {
             } else {
                 clearInterval(timerInterval);
                 if (deciso == false) {
-                    minutes = 25;
+                    minutes = 5;
                     seconds = 0;
                     document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                } else {
-                    document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
+                } else if(deciso==true && turni == document.getElementById('round').value){
+                    minutes= document.getElementById('pausalunga').value;
+                    seconds = 0;
+                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
+                }else if(deciso ==true){
+                    minutes = document.getElementById('tempopausa').value; 
+                    seconds = 0;
+                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
                 }
                 div.style.display = 'flex';
                 div2.style.display = 'none';
@@ -90,7 +103,7 @@ function start() {
                 relax();
             }
         }
-    }, 1000); 
+    }, 50); 
 }
 
 function relax() {
@@ -98,15 +111,6 @@ function relax() {
     div.style.borderColor = '#54d16f';
     document.getElementById('inizio').disabled = true;
     document.getElementById('stop').disabled = true;
-
-    if (deciso == false) {
-        minutes = 5;
-        seconds = 0;
-    } else{
-        minutes = document.getElementById('tempopausa').value; 
-        seconds = 0;
-    }
-
 
     timerInterval = setInterval(function () {
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
@@ -133,7 +137,7 @@ function relax() {
                 start(); 
             }
         }
-    }, 1000);
+    }, 50);
 }
 
 
