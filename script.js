@@ -121,7 +121,7 @@ function start() {
                 turno++;
             }
         }
-    }, 100);
+    }, 1000);
 }
 
 function relax() {
@@ -152,7 +152,7 @@ function relax() {
                 start();
             }
         }
-    }, 100);
+    }, 1000);
 }
 
 
