@@ -8,6 +8,15 @@
     src: url('./Font/Fontspring-DEMO-churchward_typestyle_book.otf') format('truetype'); 
 }
 
+@keyframes ruota {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -69,16 +78,16 @@ button{
     flex-direction: column;
 }
 
-.foglia{
-    height: 10%;
-    margin-left: 1vh;
+.contenitore{
+    height: 30vh;
+    width: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5vh;
 }
 
 .tomato{
-    height: 30vh;
-    width: 30vh;
-    border-radius: 100%;
-    border: 2vh solid tomato;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,9 +95,19 @@ button{
     font-family: 'Numeri';
     font-size: 8vh;
     color: rgb(93, 92, 92);
-    margin-bottom: 5vh;
+}
 
-    animation: rotate 1s linear infinite;
+.border{
+    height: 30vh;
+    width: 30vh;
+    margin-top: 0;
+    margin-left: 0;
+    border-radius: 100%;
+    border-top: 1vh solid tomato;
+    border-bottom: 1vh solid tomato;
+    position: absolute;
+    animation: ruota 8s linear infinite;
+    
 }
 
 .start{

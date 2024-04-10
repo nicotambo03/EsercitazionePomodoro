@@ -47,25 +47,26 @@ function start() {
     var div = document.getElementById('inizio');
     var div2 = document.getElementById('pausa');
 
-    document.getElementById('tomato').style.borderColor = 'tomato';
+    document.getElementById('tomato').style.borderTopColor = 'tomato';
+    document.getElementById('tomato').style.borderBottomColor = 'tomato';
 
     div.style.display = 'none';
     div2.style.display = 'flex';
 
-    if(turni==document.getElementById('numeroround').value){
+    if (turni == document.getElementById('numeroround').value) {
         div.style.display = 'flex';
         div2.style.display = 'none';
-        document.getElementById('turni').textContent = '0/'+document.getElementById('numeroround').value;
-        turni=1;
+        document.getElementById('turni').textContent = '0/' + document.getElementById('numeroround').value;
+        turni = 1;
         return;
     }
 
-    if(deciso==true){
+    if (deciso == true) {
         document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
-    }else{
+    } else {
         document.getElementById('turni').textContent = turni + '/4';
     }
-    
+
 
     if (pausa == false) {
         if (deciso == false) {
@@ -94,12 +95,12 @@ function start() {
                     minutes = 5;
                     seconds = 0;
                     document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                } else if(deciso==true && turni == document.getElementById('round').value){
-                    minutes= document.getElementById('pausalunga').value;
+                } else if (deciso == true && turni == document.getElementById('round').value) {
+                    minutes = document.getElementById('pausalunga').value;
                     seconds = 0;
                     document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                }else if(deciso ==true){
-                    minutes = document.getElementById('tempopausa').value; 
+                } else if (deciso == true) {
+                    minutes = document.getElementById('tempopausa').value;
                     seconds = 0;
                     document.getElementById('timer').textContent = formatTime(minutes, seconds);
                 }
@@ -109,17 +110,24 @@ function start() {
                 relax();
             }
         }
-    }, 1000); 
+    }, 10);
 }
 
 function relax() {
     var div = document.getElementById('tomato');
-    div.style.borderColor = '#54d16f';
+    div.style.borderTopColor = '#54d16f';
+    div.style.borderBottomColor = '#54d16f';
     document.getElementById('inizio').disabled = true;
     document.getElementById('stop').disabled = true;
 
     timerInterval = setInterval(function () {
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
+
+        if (pausa == true) {
+            document.getElementById('inizio').disabled = false;
+            document.getElementById('stop').disabled = false;
+            return;
+        }
 
         if (seconds > 0) {
             seconds--;
@@ -136,14 +144,14 @@ function relax() {
                 } else {
                     document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
                     minutes = document.getElementById('studio').value;
-                    seconds=0;
+                    seconds = 0;
                 }
                 document.getElementById('inizio').disabled = false;
                 document.getElementById('stop').disabled = false;
-                start(); 
+                start();
             }
         }
-    }, 1000);
+    }, 10);
 }
 
 
@@ -167,15 +175,45 @@ function stop() {
     var div2 = document.getElementById('pausa');
     pausa = true;
     clearInterval(timerInterval);
-    if (deciso==false) {
+    if (deciso == false) {
         minutes = 25;
         seconds = 0;
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
     } else {
         document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
         minutes = document.getElementById('studio').value;
-        seconds=0;
+        seconds = 0;
     }
     div.style.display = 'flex';
     div2.style.display = 'none';
+}
+
+function restart() {
+
+    pausa = true;
+
+    if (deciso == false) {
+        minutes = 25;
+        seconds = 0;
+        document.getElementById('timer').textContent = formatTime(minutes, seconds);
+    } else {
+        document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
+        minutes = document.getElementById('studio').value;
+        seconds = 0;
+    }
+
+    var div = document.getElementById('inizio');
+    var div2 = document.getElementById('pausa');
+
+    document.getElementById('tomato').style.borderTopColor = 'tomato';
+    document.getElementById('tomato').style.borderBottomColor = 'tomato';
+
+    div.style.display = 'flex';
+    div2.style.display = 'none';
+    turni=1;
+    if (deciso == true) {
+        document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
+    } else {
+        document.getElementById('turni').textContent = turni + '/4';
+    }
 }
