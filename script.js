@@ -21,32 +21,47 @@ function home() {
     impostazioni.style.display = 'none';
     var conferma = document.getElementById('conferma');
     conferma.style.display = 'none';
+
+    document.getElementById('timer').textContent = formatTime(minutes, seconds);
+    document.getElementById('turni').textContent = turno + '/' + turni;
 }
 
 var seconds = 0;
-var minutes;
-var turni = 0;
-var pausa = false;
+var minutes = 25;
+var turno = 1;
+var turni = 4;
+var tempopausa = 5;
+var pausalunga = 10;
+var round = 2;
+var inpausa = false;
 var timerInterval;
 var deciso = false;
 
 function submit() {
-    home();
-
-    minutes = document.getElementById('studio').value;
-    seconds = 0;
-
-    document.getElementById('timer').textContent = formatTime(minutes, seconds);
-    document.getElementById('turni').textContent = '0/' + document.getElementById('numeroround').value;
-
     deciso = true;
+    if (document.getElementById('studio').value != "") {
+        minutes = document.getElementById('studio').value;
+    }
+    if (document.getElementById('numeroround').value != "") {
+        turni = document.getElementById('numeroround').value;
+    }
+    if (document.getElementById('tempopausa').value != "") {
+        tempopausa = document.getElementById('tempopausa').value;
+    }
+    if (document.getElementById('pausalunga').value != "") {
+        pausalunga = document.getElementById('pausalunga').value;
+    }
+    if (document.getElementById('round').value != "") {
+        round = document.getElementById('round').value;
+    }
+
+    home();
 }
 
 function start() {
 
     var div = document.getElementById('inizio');
     var div2 = document.getElementById('pausa');
-    var numeroround = document.getElementById('numeroround').value;
 
     document.getElementById('tomato').style.borderTopColor = 'tomato';
     document.getElementById('tomato').style.borderBottomColor = 'tomato';
@@ -54,33 +69,23 @@ function start() {
     div.style.display = 'none';
     div2.style.display = 'flex';
 
-    if (turni == numeroround) {
+    document.getElementById('turni').textContent = turno + '/' + turni;
+
+    inpausa = false;
+
+    if (turno === turni+1) {
         div.style.display = 'flex';
         div2.style.display = 'none';
-        document.getElementById('turni').textContent = '0/' + document.getElementById('numeroround').value;
-        turni = 1;
+        turno = 0;
+        document.getElementById('turni').textContent = turno + '/' + turni;
         return;
     }
-
-    if (deciso == true) {
-        document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
-    } else {
-        document.getElementById('turni').textContent = turni + '/4';
-    }
-
-
-    if (pausa == false) {
-        if (deciso == false) {
-            minutes = 25;
-        }
-    }
-    pausa = false;
 
     timerInterval = setInterval(function () {
 
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
 
-        if (pausa == true) {
+        if (inpausa == true) {
             return;
         }
 
@@ -92,26 +97,25 @@ function start() {
                 seconds = 59;
             } else {
                 clearInterval(timerInterval);
-                if (deciso == false) {
-                    minutes = 5;
-                    seconds = 0;
-                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                } else if (deciso == true && turni == document.getElementById('round').value) {
-                    minutes = document.getElementById('pausalunga').value;
-                    seconds = 0;
-                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                } else if (deciso == true) {
-                    minutes = document.getElementById('tempopausa').value;
+
+                if (turno != round) {
+                    minutes = tempopausa;
                     seconds = 0;
                     document.getElementById('timer').textContent = formatTime(minutes, seconds);
                 }
+                if (turno == round) {
+                    minutes = pausalunga;
+                    seconds = 0;
+                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
+                }
+
                 div.style.display = 'flex';
                 div2.style.display = 'none';
-                turni++;
                 relax();
+                turno++;
             }
         }
-    }, 1000);
+    }, 10);
 }
 
 function relax() {
@@ -124,12 +128,6 @@ function relax() {
     timerInterval = setInterval(function () {
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
 
-        if (pausa == true) {
-            document.getElementById('inizio').disabled = false;
-            document.getElementById('stop').disabled = false;
-            return;
-        }
-
         if (seconds > 0) {
             seconds--;
         } else {
@@ -138,21 +136,37 @@ function relax() {
                 seconds = 59;
             } else {
                 clearInterval(timerInterval);
-                if (deciso == false) {
-                    minutes = 25;
-                    seconds = 0;
-                    document.getElementById('timer').textContent = formatTime(minutes, seconds);
-                } else {
-                    document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
+                if (document.getElementById('studio').value != "") {
                     minutes = document.getElementById('studio').value;
-                    seconds = 0;
+                } else {
+                    minutes = 25;
+                }
+                if (document.getElementById('numeroround').value != "") {
+                    turni = document.getElementById('numeroround').value;
+                } else {
+                    turni = 4;
+                }
+                if (document.getElementById('tempopausa').value != "") {
+                    tempopausa = document.getElementById('tempopausa').value;
+                } else {
+                    tempopausa = 5;
+                }
+                if (document.getElementById('pausalunga').value != "") {
+                    pausalunga = document.getElementById('pausalunga').value;
+                } else {
+                    pausalunga = 10;
+                }
+                if (document.getElementById('round').value != "") {
+                    round = document.getElementById('round').value;
+                } else {
+                    round = 2;
                 }
                 document.getElementById('inizio').disabled = false;
                 document.getElementById('stop').disabled = false;
                 start();
             }
         }
-    }, 1000);
+    }, 10);
 }
 
 
@@ -166,7 +180,7 @@ function pause() {
 
     div.style.display = 'flex';
     div2.style.display = 'none';
-    pausa = true;
+    inpausa = true;
     clearInterval(timerInterval);
     document.getElementById('timer').textContent = formatTime(minutes, seconds);
 }
@@ -174,7 +188,7 @@ function pause() {
 function stop() {
     var div = document.getElementById('inizio');
     var div2 = document.getElementById('pausa');
-    pausa = true;
+    inpausa = true;
     clearInterval(timerInterval);
     if (deciso == false) {
         minutes = 25;

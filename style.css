@@ -78,6 +78,12 @@ button{
     flex-direction: column;
 }
 
+.foglia{
+    height: 10%;
+    margin-left: 1vh;
+    margin-bottom: 0.5vh;
+}
+
 .contenitore{
     height: 30vh;
     width: 30vh;
