@@ -25,7 +25,7 @@ function home() {
 
 var seconds = 0;
 var minutes;
-var turni = 1;
+var turni = 0;
 var pausa = false;
 var timerInterval;
 var deciso = false;
@@ -46,6 +46,7 @@ function start() {
 
     var div = document.getElementById('inizio');
     var div2 = document.getElementById('pausa');
+    var numeroround = document.getElementById('numeroround').value;
 
     document.getElementById('tomato').style.borderTopColor = 'tomato';
     document.getElementById('tomato').style.borderBottomColor = 'tomato';
@@ -53,7 +54,7 @@ function start() {
     div.style.display = 'none';
     div2.style.display = 'flex';
 
-    if (turni == document.getElementById('numeroround').value) {
+    if (turni == numeroround) {
         div.style.display = 'flex';
         div2.style.display = 'none';
         document.getElementById('turni').textContent = '0/' + document.getElementById('numeroround').value;
@@ -110,7 +111,7 @@ function start() {
                 relax();
             }
         }
-    }, 10);
+    }, 1000);
 }
 
 function relax() {
@@ -151,7 +152,7 @@ function relax() {
                 start();
             }
         }
-    }, 10);
+    }, 1000);
 }
 
 
@@ -186,34 +187,4 @@ function stop() {
     }
     div.style.display = 'flex';
     div2.style.display = 'none';
-}
-
-function restart() {
-
-    pausa = true;
-
-    if (deciso == false) {
-        minutes = 25;
-        seconds = 0;
-        document.getElementById('timer').textContent = formatTime(minutes, seconds);
-    } else {
-        document.getElementById('timer').textContent = formatTime(document.getElementById('studio').value, 0);
-        minutes = document.getElementById('studio').value;
-        seconds = 0;
-    }
-
-    var div = document.getElementById('inizio');
-    var div2 = document.getElementById('pausa');
-
-    document.getElementById('tomato').style.borderTopColor = 'tomato';
-    document.getElementById('tomato').style.borderBottomColor = 'tomato';
-
-    div.style.display = 'flex';
-    div2.style.display = 'none';
-    turni=1;
-    if (deciso == true) {
-        document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
-    } else {
-        document.getElementById('turni').textContent = turni + '/4';
-    }
 }
