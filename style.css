@@ -87,6 +87,8 @@ button{
     font-size: 8vh;
     color: rgb(93, 92, 92);
     margin-bottom: 5vh;
+
+    animation: rotate 1s linear infinite;
 }
 
 .start{

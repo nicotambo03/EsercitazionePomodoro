@@ -60,7 +60,12 @@ function start() {
         return;
     }
 
-    document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
+    if(deciso==true){
+        document.getElementById('turni').textContent = turni + '/' + document.getElementById('numeroround').value;
+    }else{
+        document.getElementById('turni').textContent = turni + '/4';
+    }
+    
 
     if (pausa == false) {
         if (deciso == false) {
@@ -70,6 +75,7 @@ function start() {
     pausa = false;
 
     timerInterval = setInterval(function () {
+
         document.getElementById('timer').textContent = formatTime(minutes, seconds);
 
         if (pausa == true) {
@@ -103,7 +109,7 @@ function start() {
                 relax();
             }
         }
-    }, 50); 
+    }, 1000); 
 }
 
 function relax() {
@@ -137,7 +143,7 @@ function relax() {
                 start(); 
             }
         }
-    }, 50);
+    }, 1000);
 }
 
 
