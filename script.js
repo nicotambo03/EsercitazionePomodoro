@@ -43,7 +43,7 @@ function submit() {
         minutes = document.getElementById('studio').value;
     }
     if (document.getElementById('numeroround').value != "") {
-        turni = document.getElementById('numeroround').value;
+        turni = parseInt(document.getElementById('numeroround').value, 10);
     }
     if (document.getElementById('tempopausa').value != "") {
         tempopausa = document.getElementById('tempopausa').value;
@@ -76,8 +76,14 @@ function start() {
     if (turno === turni+1) {
         div.style.display = 'flex';
         div2.style.display = 'none';
-        turno = 0;
+        turno = 1;
         document.getElementById('turni').textContent = turno + '/' + turni;
+        if (document.getElementById('studio').value != "") {
+            minutes = document.getElementById('studio').value;
+        } else {
+            minutes = 25;
+        }
+        document.getElementById('timer').textContent = formatTime(minutes, seconds);
         return;
     }
 
@@ -115,7 +121,7 @@ function start() {
                 turno++;
             }
         }
-    }, 10);
+    }, 100);
 }
 
 function relax() {
@@ -141,32 +147,12 @@ function relax() {
                 } else {
                     minutes = 25;
                 }
-                if (document.getElementById('numeroround').value != "") {
-                    turni = document.getElementById('numeroround').value;
-                } else {
-                    turni = 4;
-                }
-                if (document.getElementById('tempopausa').value != "") {
-                    tempopausa = document.getElementById('tempopausa').value;
-                } else {
-                    tempopausa = 5;
-                }
-                if (document.getElementById('pausalunga').value != "") {
-                    pausalunga = document.getElementById('pausalunga').value;
-                } else {
-                    pausalunga = 10;
-                }
-                if (document.getElementById('round').value != "") {
-                    round = document.getElementById('round').value;
-                } else {
-                    round = 2;
-                }
                 document.getElementById('inizio').disabled = false;
                 document.getElementById('stop').disabled = false;
                 start();
             }
         }
-    }, 10);
+    }, 100);
 }
 
 
@@ -199,6 +185,8 @@ function stop() {
         minutes = document.getElementById('studio').value;
         seconds = 0;
     }
+    turno = 1;
+    document.getElementById('turni').textContent = turno + '/' + turni;
     div.style.display = 'flex';
     div2.style.display = 'none';
 }
